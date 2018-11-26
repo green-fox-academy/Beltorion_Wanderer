@@ -15,7 +15,7 @@ the monsters holding the keys to the next level.
 
 #### How to launch the program
 
-- Launching the game is running the `Main` class' `main()` method.
+- Launching the game is running the `Board` class' `main()` method.
 - When reading through the specification and the stories again keep this in mind.
 - Here's an example, it contains
   - a big drawable canvas with one image painted on it
