@@ -16,8 +16,12 @@ the monsters holding the keys to the next level.
 #### How to launch the program
 
 - Launching the game is running the `Board` class' `main()` method.
-- When reading through the specification and the stories again keep this in mind.
+
+- When reading through the specification and the stories again keep this in
+  mind.
+
 - Here's an example, it contains
+
   - a big drawable canvas with one image painted on it
   - and handling pressing keys, for moving your hero around
   - be aware that these are just all the needed concepts put in one place
@@ -91,10 +95,15 @@ public class Board extends JComponent implements KeyListener {
     }
     // and redraw to have a new picture with the new coordinates
     repaint();
+  
   }
+
 }
+
 ```
+
 - You can use this image class as a base:
+
 ```java
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -122,36 +131,55 @@ public class PositionedImage {
     if (image != null) {
       graphics.drawImage(image, posX, posY, null);
     }
+
   }
+
 }
+
 ```
 
-### 3. Create a GitHub project under your repository for your work and add the [project stories](https://github.com/greenfox-academy/teaching-materials/blob/master/project/wanderer/stories.md).
+### 3. Create a GitHub project
 
-### 4. Form groups and plan your application together.
+- create it under your repository for your work and add the [project stories](https://github.com/greenfox-academy/teaching-materials/blob/master/project/wanderer/stories.md)
 
-Plan your architecture. In your architecture you should consider the following components:
+### 4. Form groups and plan your application together
+
+Plan your architecture. In your architecture you should consider the following
+components:
 
 - Models
-    - GameObject
-        - Character
-            - Monster
-            - Hero
-            - types
-        - Area
-        - Tile
-            - EmptyTile
-            - NotEmptyTile
+
+- GameObject
+
+  - Character
+
+    - Monster
+
+      - Hero
+
+      - types
+
+      - Area
+
+      - Tile
+
+        - EmptyTile
+        - NotEmptyTile
+
 - GameLogic
-    - current hero
-    - current area
+
+  - current hero
+  - current area
+
 - Main
-    - handling events
-    - current game
+
+  - handling events
+  - current game
 
 #### 5. Think about task breakdown in Kanban together
 
-Now that you see the big picture, **go through the stories together** and think about how to break them down into tasks:
+Now that you see the big picture, **go through the stories together** and think
+about how to break them down into tasks:
 
 - To classes
 - To methods
