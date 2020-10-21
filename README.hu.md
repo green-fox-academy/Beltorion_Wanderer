@@ -137,7 +137,7 @@ public class PositionedImage {
 
 ### 3. Készíts egy GitHub projektet
 
-- a repositorydban a munkádhoz, és add hozzá a [projekt sztorikat](https://github.com/greenfox-academy/teaching-materials/project/wanderer/stories.hu.md) 
+- a repositorydban a munkádhoz, és add hozzá a [projekt sztorikat](https://github.com/green-fox-academy/teaching-materials/blob/master/project/wanderer/stories.hu.md) 
 
 ### 4. Alkossatok csoportokat és tervezzétek meg az applikációtokat együtt
 
