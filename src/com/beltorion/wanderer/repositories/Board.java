@@ -1,35 +1,25 @@
 package com.beltorion.wanderer.repositories;
 
-import com.beltorion.wanderer.PositionedImage;
-
 import javax.swing.*;
 import java.awt.*;
 
-public class Board extends JComponent {
+public class Board  {
 
-    public static final String FLOOR_PNG = "resources/img/floor.png";
+    JFrame frame = new JFrame();
+    Tile tile = new Tile();
+    Hero hero = new Hero();
 
-    public Board(int floorImgPosX, int floorImgPosY) {
-        this.floorImgPosX = 0;
-        this.floorImgPosY = 0;
-    }
-
-    int floorImgPosX;
-    int floorImgPosY;
-
-    public Board() {
-        // beállítja a rajztábla méretét
-        setPreferredSize(new Dimension(720, 720));
-        setVisible(true);
-    }
-
-    @Override
-    public void paint(Graphics graphics) {
-        PositionedImage floor = new PositionedImage(FLOOR_PNG, floorImgPosX, floorImgPosY);
-        floor.draw(graphics);
-
-//        for (int i = 0; i < 9; i++) {
-//            floorImgPosX = floorImgPosX + 72;
-//        }
+    public Board(){
+        frame.setTitle("Wanderer Game");
+        frame.add(hero);
+        frame.addKeyListener(hero);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(720,720);
+        frame.setResizable(false);
+        frame.setVisible(true);
+       // frame.pack();
+        ImageIcon image = new ImageIcon("resources/img/hero-down.png"); //create an ImageIcon
+        frame.setIconImage(image.getImage()); //change icon of frame
+        frame.add(tile);
     }
 }
