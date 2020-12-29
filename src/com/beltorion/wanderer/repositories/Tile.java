@@ -11,20 +11,18 @@ public class Tile extends JComponent {
     int floorImgPosX;
     int floorImgPosY;
 
-    public Tile(int floorImgPosX, int floorImgPosY) {
-        this.floorImgPosX = 0;
-        this.floorImgPosY = 0;
+    public Tile() {
     }
 
-
-    public Tile() {
-
+    public Tile(int floorImgPosX, int floorImgPosY) {
+        this.floorImgPosX = floorImgPosX;
+        this.floorImgPosY = floorImgPosY;
     }
 
     @Override
     public void paint(Graphics graphics) {
+        super.paint(graphics);
         PositionedImage floor = new PositionedImage(FLOOR_PNG, floorImgPosX, floorImgPosY);
-        floor.draw(graphics);
-
+        floor.paintMap(graphics);
     }
 }

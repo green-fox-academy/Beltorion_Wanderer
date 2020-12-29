@@ -13,7 +13,6 @@ public class Hero extends JComponent implements java.awt.event.KeyListener {
     int testBoxY;
     JLayeredPane layered = new JLayeredPane();
 
-
     public void setTestBoxY(int testBoxY) {
         this.testBoxY = testBoxY;
     }
@@ -21,7 +20,6 @@ public class Hero extends JComponent implements java.awt.event.KeyListener {
     @Override
     public void paint(Graphics graphics) {
         super.paint(graphics);
-       // graphics.fillRect(testBoxX, testBoxY, 10, 10);
         PositionedImage heroDown = new PositionedImage(HERO_DOWN, testBoxX, testBoxY);
         heroDown.draw(graphics);
     }

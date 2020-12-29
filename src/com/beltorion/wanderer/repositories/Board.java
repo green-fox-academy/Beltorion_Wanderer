@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Board  {
-
     JFrame frame = new JFrame();
     Tile tile = new Tile();
     Hero hero = new Hero();
@@ -14,7 +13,7 @@ public class Board  {
         frame.add(hero);
         frame.addKeyListener(hero);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(720,720);
+        frame.setSize(735,760);
         frame.setResizable(false);
         frame.setVisible(true);
        // frame.pack();
