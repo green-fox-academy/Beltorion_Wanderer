@@ -1,6 +1,10 @@
-package com.beltorion.wanderer.repositories;
+package com.beltorion.wanderer.controllers;
 
-import com.beltorion.wanderer.ImageLoader;
+import com.beltorion.wanderer.repositories.Board;
+import com.beltorion.wanderer.repositories.HeroOld;
+import com.beltorion.wanderer.services.ImageLoader;
+import com.beltorion.wanderer.services.Images;
+import com.beltorion.wanderer.services.SpriteSheet;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -12,6 +16,8 @@ public class GameControler implements Runnable {
     public int width, height;
     public String title;
 
+    private static final int imageSize = 72;
+
     private boolean running = false;
     private Thread thread;
 
@@ -21,13 +27,12 @@ public class GameControler implements Runnable {
     private BufferedImage testImage;
     private SpriteSheet sheet;
 
-    Hero hero = new Hero();
+    HeroOld heroOld = new HeroOld();
 
     public GameControler(String title, int width, int height) {
         this.title = title;
         this.width = width;
         this.height = height;
-
     }
 
     private void init() {
@@ -36,11 +41,14 @@ public class GameControler implements Runnable {
         //testImage = ImageLoader.loadImage("/img/hero-down.png");
 
         sheet = new SpriteSheet(testImage);
+        Images.init();
 
     }
 
-    private void upDate() {
+    int x = 0;
 
+    private void upDate() {
+        x += 1;
     }
 
     private void render() {
@@ -55,8 +63,16 @@ public class GameControler implements Runnable {
         graphics.clearRect(0, 0, width, height);
         // Draw here
 
-        graphics.drawImage(sheet.crop(0,72,72,72), 0,0,null);
-       // graphics.drawImage(testImage,0,0,null);
+        graphics.drawImage(Images.floor, x, 72, null);
+//        graphics.drawImage(Images.wall, imageSize,0, null);
+//        graphics.drawImage(Images.boss, imageSize*2,0, null);
+//        graphics.drawImage(Images.skeleton, imageSize*3,0, null);
+//        graphics.drawImage(Images.heroDown, imageSize*4,0, null);
+//        graphics.drawImage(Images.heroLeft, imageSize*5,0, null);
+//        graphics.drawImage(Images.heroRight, imageSize*6,0, null);
+//        graphics.drawImage(Images.heroUp, imageSize*7,0, null);
+
+//        graphics.drawImage(Images.floor, 0,0, null);
 //            int x = 0;
 //            int y = 0;
 //            for (int k = 0; k < 10; k++) {
@@ -67,8 +83,6 @@ public class GameControler implements Runnable {
 //                x = 0;
 //                y += 72;
 //            }
-
-
 
         //End drawing
         bufferStrategy.show();
@@ -82,9 +96,40 @@ public class GameControler implements Runnable {
      */
     public void run() {
         init();
+        // Optimizing the game running
+
+        // How many time the update runs/second
+        int fps = 60;
+        // 1000000000 nanosecond = 1 sec. It sets the fps to one frame per second
+        double timePerUpdate = 1000000000/fps;
+        double delta =0;
+        long now;
+        long lastTime = System.nanoTime();
+
+        // checking if it is correct
+        //        long timer =0;
+        //        long upDates=0;
+
         while (running) {
-            upDate();
-            render();
+            now = System.nanoTime();
+
+            //sets when to call the upDate method again.
+            delta += (now - lastTime) / timePerUpdate;
+            //timer += now - lastTime;
+            lastTime = now;
+
+            if (delta >= 1) {
+                upDate();
+                render();
+            //  upDates++;
+                delta--;
+            }
+
+//            if (timer >= 1000000000) {
+//                System.out.println("Updates and Frames: " + upDates);
+//                upDates=0;
+//                timer=0;
+//            }
         }
         stop();
     }
