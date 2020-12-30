@@ -1,12 +1,14 @@
 package com.beltorion.wanderer.controllers;
 
 import com.beltorion.wanderer.repositories.Board;
+import com.beltorion.wanderer.repositories.Hero;
 import com.beltorion.wanderer.repositories.HeroOld;
 import com.beltorion.wanderer.services.ImageLoader;
 import com.beltorion.wanderer.services.Images;
 import com.beltorion.wanderer.services.SpriteSheet;
 
 import java.awt.*;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
@@ -27,7 +29,7 @@ public class GameControler implements Runnable {
     private BufferedImage testImage;
     private SpriteSheet sheet;
 
-    HeroOld heroOld = new HeroOld();
+    Hero hero = new Hero(0,0);
 
     public GameControler(String title, int width, int height) {
         this.title = title;
@@ -37,18 +39,13 @@ public class GameControler implements Runnable {
 
     private void init() {
         board = new Board(title, width, height);
+        board.getFrame().addKeyListener(hero);
         testImage = ImageLoader.loadImage("/img/wandererSpriteSheet.png");
-        //testImage = ImageLoader.loadImage("/img/hero-down.png");
-
-        sheet = new SpriteSheet(testImage);
         Images.init();
 
     }
 
-    int x = 0;
-
     private void upDate() {
-        x += 1;
     }
 
     private void render() {
@@ -63,7 +60,8 @@ public class GameControler implements Runnable {
         graphics.clearRect(0, 0, width, height);
         // Draw here
 
-        graphics.drawImage(Images.floor, x, 72, null);
+
+
 //        graphics.drawImage(Images.wall, imageSize,0, null);
 //        graphics.drawImage(Images.boss, imageSize*2,0, null);
 //        graphics.drawImage(Images.skeleton, imageSize*3,0, null);
@@ -72,17 +70,19 @@ public class GameControler implements Runnable {
 //        graphics.drawImage(Images.heroRight, imageSize*6,0, null);
 //        graphics.drawImage(Images.heroUp, imageSize*7,0, null);
 
-//        graphics.drawImage(Images.floor, 0,0, null);
-//            int x = 0;
-//            int y = 0;
-//            for (int k = 0; k < 10; k++) {
-//                for (int i = 0; i < 10; i++) {
-//                    graphics.drawImage(testImage, x, y, null);
-//                    x += 72;
-//                }
-//                x = 0;
-//                y += 72;
-//            }
+        graphics.drawImage(Images.floor, 0,0, null);
+            int x = 0;
+            int y = 0;
+            for (int k = 0; k < 10; k++) {
+                for (int i = 0; i < 10; i++) {
+                    graphics.drawImage(testImage, x, y, null);
+                    x += 72;
+                }
+                x = 0;
+                y += 72;
+            }
+
+        hero.render(graphics);
 
         //End drawing
         bufferStrategy.show();

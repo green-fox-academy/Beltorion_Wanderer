@@ -1,5 +1,8 @@
 package com.beltorion.wanderer.repositories;
 
+import com.sun.javafx.logging.JFRInputEvent;
+import com.sun.javaws.util.JfxHelper;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -11,7 +14,7 @@ public class Board {
     private int width, height;
 
     Tile tile = new Tile();
-    Hero hero = new Hero();
+    HeroOld heroOld = new HeroOld();
 
     public Board(String title, int width, int height) {
         this.title = title;
@@ -21,14 +24,22 @@ public class Board {
 
     }
 
+    public Canvas getCanvas() {
+        return canvas;
+    }
+
+    public JFrame getFrame(){
+        return frame;
+    }
+
     private void createBoard() {
         frame = new JFrame(title);
         frame.setSize(width, height);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
-        frame.add(hero);
-        frame.addKeyListener(hero);
+        //frame.add(hero);
+        //frame.addKeyListener(hero);
         frame.setVisible(true);
         ImageIcon image = new ImageIcon("resources/img/hero-down.png"); //create an ImageIcon
         frame.setIconImage(image.getImage()); //change icon of frame
@@ -37,6 +48,7 @@ public class Board {
         canvas.setPreferredSize(new Dimension(width, height));
         canvas.setMaximumSize(new Dimension(width, height));
         canvas.setMinimumSize(new Dimension(width, height));
+        canvas.setFocusable(false);
 
         frame.add(canvas);
         frame.pack();

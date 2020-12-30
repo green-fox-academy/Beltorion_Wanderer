@@ -2,7 +2,7 @@ package com.beltorion.wanderer.controllers;
 
 import java.awt.*;
 
-public abstract class Character {
+public abstract class Characters {
 
     protected float x, y;
     protected int hp;
@@ -10,7 +10,7 @@ public abstract class Character {
     protected int sp;
 
 
-    public Character(float x, float y) {
+    public Characters(float x, float y) {
         this.x = x;
         this.y = y;
         hp = 10;

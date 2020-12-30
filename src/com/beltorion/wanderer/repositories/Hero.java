@@ -1,52 +1,51 @@
 package com.beltorion.wanderer.repositories;
 
-import com.beltorion.wanderer.PositionedImage;
+import com.beltorion.wanderer.controllers.Characters;
+import com.beltorion.wanderer.services.Images;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-public class Hero extends JComponent implements java.awt.event.KeyListener {
+public class Hero extends Characters implements java.awt.event.KeyListener {
 
-    public static final String HERO_DOWN = "resources/img/hero-down.png";
-    int testBoxX;
-    int testBoxY;
-    JLayeredPane layered = new JLayeredPane();
-
-    public void setTestBoxY(int testBoxY) {
-        this.testBoxY = testBoxY;
+    public Hero(float x, float y) {
+        super(x, y);
     }
 
     @Override
-    public void paint(Graphics graphics) {
-        super.paint(graphics);
-        PositionedImage heroDown = new PositionedImage(HERO_DOWN, testBoxX, testBoxY);
-        heroDown.draw(graphics);
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
+    public void upDate() {
 
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
-
+    public void render(Graphics graphics) {
+        graphics.drawImage(Images.heroDown, (int) x, (int) y, null);
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_UP) {
-            testBoxY -= 72;
+            y -= 72;
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            testBoxY += 72;
+            y += 72;
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            testBoxX -= 72;
+            x -= 72;
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            testBoxX += 72;
+            x += 72;
         }
         // és újra rajzolódik az új koordinátákkal
-        repaint();
+        //repaint();
+    }
 
+    @Override
+    public void keyTyped(KeyEvent e) {
+        //empty block
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        //empty block
     }
 }
+
+
