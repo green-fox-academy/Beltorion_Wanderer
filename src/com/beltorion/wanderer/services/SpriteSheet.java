@@ -1,4 +1,4 @@
-package com.beltorion.wanderer.repositories;
+package com.beltorion.wanderer.services;
 
 import java.awt.image.BufferedImage;
 

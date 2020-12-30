@@ -1,4 +1,4 @@
-package com.beltorion.wanderer;
+package com.beltorion.wanderer.services;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

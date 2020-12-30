@@ -1,6 +1,6 @@
 package com.beltorion.wanderer;
 
-import com.beltorion.wanderer.repositories.GameControler;
+import com.beltorion.wanderer.controllers.GameControler;
 
 public class Wanderer {
 
