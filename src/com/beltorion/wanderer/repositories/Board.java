@@ -3,22 +3,43 @@ package com.beltorion.wanderer.repositories;
 import javax.swing.*;
 import java.awt.*;
 
-public class Board  {
-    JFrame frame = new JFrame();
+public class Board {
+    private JFrame frame;
+    private Canvas canvas;
+
+    private String title;
+    private int width, height;
+
     Tile tile = new Tile();
     Hero hero = new Hero();
 
-    public Board(){
-        frame.setTitle("Wanderer Game");
+    public Board(String title, int width, int height) {
+        this.title = title;
+        this.width = width;
+        this.height = height;
+        createBoard();
+
+    }
+
+    private void createBoard() {
+        frame = new JFrame(title);
+        frame.setSize(width, height);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.setLocationRelativeTo(null);
         frame.add(hero);
         frame.addKeyListener(hero);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(735,760);
-        frame.setResizable(false);
         frame.setVisible(true);
-       // frame.pack();
         ImageIcon image = new ImageIcon("resources/img/hero-down.png"); //create an ImageIcon
         frame.setIconImage(image.getImage()); //change icon of frame
-        frame.add(tile);
+
+        canvas = new Canvas();
+        canvas.setPreferredSize(new Dimension(width, height));
+        canvas.setMaximumSize(new Dimension(width, height));
+        canvas.setMinimumSize(new Dimension(width, height));
+
+        frame.add(canvas);
+        frame.pack();
     }
+
 }
