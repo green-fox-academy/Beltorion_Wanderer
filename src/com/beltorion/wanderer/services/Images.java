@@ -16,8 +16,8 @@ public class Images {
         boss = sheet.crop(0, height * 2, width, height);
         skeleton = sheet.crop(0, height * 3, width, height);
         heroDown = sheet.crop(width, 0, width, height);
-        heroLeft = sheet.crop(width, height, width, height);
-        heroRight = sheet.crop(width, height * 2, width, height);
+        heroRight = sheet.crop(width, height, width, height);
+        heroLeft = sheet.crop(width, height * 2, width, height);
         heroUp = sheet.crop(width, height * 3, width, height);
 
     }

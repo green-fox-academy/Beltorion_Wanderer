@@ -20,6 +20,39 @@ public class Tile {
     }
 
     public void render(Graphics graphics) {
+        graphics.drawImage(Images.wall, imgPosX, imgPosY,null);
+    }
+    public Image floor(Graphics graphics) {
         graphics.drawImage(Images.floor, imgPosX, imgPosY,null);
+        return null;
+    }
+    public void wall(Graphics graphics) {
+        graphics.drawImage(Images.wall, imgPosX, imgPosY,null);
+    }
+
+    public TileType getType() {
+        return type;
+    }
+
+    public void setType(TileType type) {
+        this.type = type;
+    }
+
+
+    public void setImgPosX(int imgPosX) {
+        this.imgPosX = imgPosX;
+    }
+
+
+    public void setImgPosY(int imgPosY) {
+        this.imgPosY = imgPosY;
+    }
+
+    public Images getImages() {
+        return images;
+    }
+
+    public void setImages(Images images) {
+        this.images = images;
     }
 }

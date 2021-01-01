@@ -1,6 +1,5 @@
 package com.beltorion.wanderer;
 
-import com.beltorion.wanderer.repositories.TileOld;
 import com.beltorion.wanderer.repositories.TileType;
 
 import javax.imageio.ImageIO;
@@ -14,7 +13,6 @@ public class PositionedImage {
     BufferedImage image;
     int posX, posY;
     TileType type;
-    public TileOld[][] map;
 
     public PositionedImage(String filename, int posX, int posY, TileType type) {
         this.posX = posX;
@@ -53,26 +51,6 @@ public class PositionedImage {
             }
             x = 0;
             y += 72;
-        }
-    }
-
-    public void GameMap() {
-        map = new TileOld[10][10];
-        for (int i = 0; i < map.length; i++) {
-            for (int j = 0; j < map[i].length; j++) {
-                map[i][j] = new TileOld( i * 72, j * 72, TileType.wall);
-            }
-        }
-    }
-
-    public void DrawMap(Graphics g) {
-
-        for (int i = 0; i < map.length; i++) {
-            for (int j = 0; j < map[i].length; j++) {
-                TileOld t = map[i][j];
-                g.drawImage(image, posX, posY, null);
-            }
-
         }
     }
 
