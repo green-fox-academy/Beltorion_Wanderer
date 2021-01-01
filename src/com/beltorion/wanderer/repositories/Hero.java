@@ -23,6 +23,11 @@ public class Hero extends Characters implements java.awt.event.KeyListener {
     }
 
     @Override
+    public void move() {
+        super.move();
+    }
+
+    @Override
     public void keyReleased(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             y -= 72;

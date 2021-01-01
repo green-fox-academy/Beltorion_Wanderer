@@ -1,28 +1,25 @@
 package com.beltorion.wanderer.repositories;
 
-import com.beltorion.wanderer.PositionedImage;
+import com.beltorion.wanderer.services.Images;
 
-import javax.swing.*;
 import java.awt.*;
 
-public class Tile extends JComponent {
-
-    public static final String FLOOR_PNG = "resources/img/floor.png";
-    int floorImgPosX;
-    int floorImgPosY;
+public class Tile {
+    private TileType type;
+    private int imgPosX;
+    private int imgPosY;
+    Images images = new Images();
 
     public Tile() {
     }
 
-    public Tile(int floorImgPosX, int floorImgPosY) {
-        this.floorImgPosX = floorImgPosX;
-        this.floorImgPosY = floorImgPosY;
+    public Tile(int ImgPosX, int ImgPosY, TileType type) {
+        this.imgPosX = ImgPosX;
+        this.imgPosY = ImgPosY;
+        this.type = type;
     }
 
-    @Override
-    public void paint(Graphics graphics) {
-        super.paint(graphics);
-        PositionedImage floor = new PositionedImage(FLOOR_PNG, floorImgPosX, floorImgPosY);
-        floor.paintMap(graphics);
+    public void render(Graphics graphics) {
+        graphics.drawImage(Images.floor, imgPosX, imgPosY,null);
     }
 }

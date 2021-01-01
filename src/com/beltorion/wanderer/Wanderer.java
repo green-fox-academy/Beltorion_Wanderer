@@ -1,12 +1,12 @@
 package com.beltorion.wanderer;
 
-import com.beltorion.wanderer.controllers.GameControler;
+import com.beltorion.wanderer.controllers.GameController;
 
 public class Wanderer {
 
     public static void main(String[] args) {
-        GameControler gameControler = new GameControler("wanderer", 720, 720);
-        gameControler.start();
+        GameController gameController = new GameController("wanderer", 720, 720);
+        gameController.start();
 
 //        GameMap gameMap=new GameMap();
 //        gameMap.mapLenght();

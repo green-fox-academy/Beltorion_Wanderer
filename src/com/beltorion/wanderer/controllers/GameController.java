@@ -1,22 +1,20 @@
 package com.beltorion.wanderer.controllers;
 
 import com.beltorion.wanderer.repositories.Board;
+import com.beltorion.wanderer.repositories.GameMap;
 import com.beltorion.wanderer.repositories.Hero;
-import com.beltorion.wanderer.repositories.HeroOld;
-import com.beltorion.wanderer.services.ImageLoader;
+import com.beltorion.wanderer.repositories.Tile;
 import com.beltorion.wanderer.services.Images;
-import com.beltorion.wanderer.services.SpriteSheet;
 
 import java.awt.*;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
 
-public class GameControler implements Runnable {
+public class GameController implements Runnable {
 
     private Board board;
     public int width, height;
     public String title;
+    private GameMap map;
 
     private static final int imageSize = 72;
 
@@ -26,12 +24,10 @@ public class GameControler implements Runnable {
     private BufferStrategy bufferStrategy;
     private Graphics graphics;
 
-    private BufferedImage testImage;
-    private SpriteSheet sheet;
+    Hero hero = new Hero(0, 0);
+    Tile tile = new Tile(72, 72, null);
 
-    Hero hero = new Hero(0,0);
-
-    public GameControler(String title, int width, int height) {
+    public GameController(String title, int width, int height) {
         this.title = title;
         this.width = width;
         this.height = height;
@@ -40,9 +36,9 @@ public class GameControler implements Runnable {
     private void init() {
         board = new Board(title, width, height);
         board.getFrame().addKeyListener(hero);
-        testImage = ImageLoader.loadImage("/img/wandererSpriteSheet.png");
-        Images.init();
+        map = new GameMap();
 
+        Images.init();
     }
 
     private void upDate() {
@@ -56,38 +52,22 @@ public class GameControler implements Runnable {
             return;
         }
         graphics = bufferStrategy.getDrawGraphics();
+
         // Clear Screen
         graphics.clearRect(0, 0, width, height);
+
         // Draw here
 
-
-
-//        graphics.drawImage(Images.wall, imageSize,0, null);
-//        graphics.drawImage(Images.boss, imageSize*2,0, null);
-//        graphics.drawImage(Images.skeleton, imageSize*3,0, null);
-//        graphics.drawImage(Images.heroDown, imageSize*4,0, null);
-//        graphics.drawImage(Images.heroLeft, imageSize*5,0, null);
-//        graphics.drawImage(Images.heroRight, imageSize*6,0, null);
-//        graphics.drawImage(Images.heroUp, imageSize*7,0, null);
-
-        graphics.drawImage(Images.floor, 0,0, null);
-            int x = 0;
-            int y = 0;
-            for (int k = 0; k < 10; k++) {
-                for (int i = 0; i < 10; i++) {
-                    graphics.drawImage(testImage, x, y, null);
-                    x += 72;
-                }
-                x = 0;
-                y += 72;
-            }
-
+        GameMap.drawMap(graphics);
+        // tile.render(graphics);
         hero.render(graphics);
 
         //End drawing
+
         bufferStrategy.show();
         graphics.dispose();
     }
+
 
     /* Needs for Runnable interface
     starts the program, refresh the variables and renders the elements to the screen.
@@ -101,8 +81,8 @@ public class GameControler implements Runnable {
         // How many time the update runs/second
         int fps = 60;
         // 1000000000 nanosecond = 1 sec. It sets the fps to one frame per second
-        double timePerUpdate = 1000000000/fps;
-        double delta =0;
+        double timePerUpdate = 1000000000 / fps;
+        double delta = 0;
         long now;
         long lastTime = System.nanoTime();
 
@@ -121,7 +101,7 @@ public class GameControler implements Runnable {
             if (delta >= 1) {
                 upDate();
                 render();
-            //  upDates++;
+                //  upDates++;
                 delta--;
             }
 
