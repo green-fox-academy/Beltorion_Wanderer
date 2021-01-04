@@ -20,7 +20,7 @@ public class GameMap {
     private static final Tile tile = new Tile();
     //private static Tile tile;
 
-
+//TODO Outsource to a file or new class
 
     public static int[][] mapArray = {
             {0, 0, 0, 1, 0, 0, 0, 0, 0, 0,},
