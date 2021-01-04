@@ -1,14 +1,17 @@
 package com.beltorion.wanderer.repositories;
 
-import com.beltorion.wanderer.services.Images;
+import static com.beltorion.wanderer.services.Images.*;
+
+
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Tile {
     private TileType type;
     private int imgPosX;
     private int imgPosY;
-    Images images = new Images();
+    //Images images = new Images();
 
     public Tile() {
     }
@@ -19,16 +22,16 @@ public class Tile {
         this.type = type;
     }
 
-    public void render(Graphics graphics) {
-        graphics.drawImage(Images.wall, imgPosX, imgPosY,null);
+    public void render(Graphics graphics, BufferedImage images, int imgPosX, int imgPosY, TileType type) {
+        graphics.drawImage(images, imgPosX, imgPosY, null);
     }
-    public Image floor(Graphics graphics) {
-        graphics.drawImage(Images.floor, imgPosX, imgPosY,null);
-        return null;
-    }
-    public void wall(Graphics graphics) {
-        graphics.drawImage(Images.wall, imgPosX, imgPosY,null);
-    }
+//    public Image floor(Graphics graphics) {
+//        graphics.drawImage(Images.floor, imgPosX, imgPosY,null);
+//        return null;
+//    }
+//    public void wall(Graphics graphics) {
+//        graphics.drawImage(Images.wall, imgPosX, imgPosY,null);
+//    }
 
     public TileType getType() {
         return type;
@@ -48,11 +51,13 @@ public class Tile {
         this.imgPosY = imgPosY;
     }
 
-    public Images getImages() {
-        return images;
+    public int getImgPosX() {
+        return imgPosX;
     }
 
-    public void setImages(Images images) {
-        this.images = images;
+    public int getImgPosY() {
+        return imgPosY;
     }
 }
+
+

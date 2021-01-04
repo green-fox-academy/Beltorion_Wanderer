@@ -7,7 +7,6 @@ import com.beltorion.wanderer.repositories.Tile;
 import com.beltorion.wanderer.services.Images;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 
 public class GameController implements Runnable {
@@ -26,7 +25,7 @@ public class GameController implements Runnable {
     private Graphics graphics;
 
     Hero hero = new Hero(0, 0);
-    Tile tile = new Tile(0, 0, null);
+    Tile tile = new Tile();
 
 
     public GameController(String title, int width, int height) {
@@ -62,9 +61,7 @@ public class GameController implements Runnable {
         // Draw here
 
         GameMap.drawMap(graphics);
-        //tile.wall(graphics);
-        // graphics.drawImage(floor, 72,  72, null);
-
+        //tile.render(graphics, Images.wall, 72,72, TileType.wall);
 
         hero.render(graphics);
 
