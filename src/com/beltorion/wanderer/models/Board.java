@@ -1,4 +1,4 @@
-package com.beltorion.wanderer.repositories;
+package com.beltorion.wanderer.models;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,6 +1,6 @@
 package com.beltorion.wanderer.controllers;
 
-import com.beltorion.wanderer.repositories.Board;
+import com.beltorion.wanderer.models.Board;
 import com.beltorion.wanderer.repositories.GameMap;
 import com.beltorion.wanderer.repositories.Hero;
 import com.beltorion.wanderer.repositories.Tile;
@@ -16,7 +16,7 @@ public class GameController implements Runnable {
     public String title;
     private GameMap map;
 
-    private static final int imageSize = 72;
+    private static final int IMAGE_SIZE = 72;
 
     private boolean running = false;
     private Thread thread;
@@ -38,8 +38,6 @@ public class GameController implements Runnable {
         board = new Board(title, width, height);
         board.getFrame().addKeyListener(hero);
         map = new GameMap();
-
-
         Images.init();
     }
 
@@ -61,7 +59,6 @@ public class GameController implements Runnable {
         // Draw here
 
         GameMap.drawMap(graphics);
-        //tile.render(graphics, Images.wall, 72,72, TileType.wall);
 
         hero.render(graphics);
 
@@ -79,40 +76,9 @@ public class GameController implements Runnable {
      */
     public void run() {
         init();
-        // Optimizing the game running
-
-        // How many time the update runs/second
-        int fps = 60;
-        // 1000000000 nanosecond = 1 sec. It sets the fps to one frame per second
-        double timePerUpdate = 1000000000 / fps;
-        double delta = 0;
-        long now;
-        long lastTime = System.nanoTime();
-
-        // checking if it is correct
-        //        long timer =0;
-        //        long upDates=0;
-
         while (running) {
-            now = System.nanoTime();
-
-            //sets when to call the upDate method again.
-            delta += (now - lastTime) / timePerUpdate;
-            //timer += now - lastTime;
-            lastTime = now;
-
-            if (delta >= 1) {
-                upDate();
-                render();
-                //  upDates++;
-                delta--;
-            }
-
-//            if (timer >= 1000000000) {
-//                System.out.println("Updates and Frames: " + upDates);
-//                upDates=0;
-//                timer=0;
-//            }
+            upDate();
+            render();
         }
         stop();
     }

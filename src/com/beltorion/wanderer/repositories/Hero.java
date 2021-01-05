@@ -8,31 +8,30 @@ import java.awt.event.KeyEvent;
 
 public class Hero extends Characters implements java.awt.event.KeyListener {
 
-    private static boolean heroUpDown = true;
     String direction;
     private static Tile tile = new Tile();
+    private static final int TILE_SIZE = 72;
 
-    public Hero(float x, float y) {
+    public Hero(int x, int y) {
         super(x, y);
     }
 
     @Override
     public void upDate() {
-
+        //Empty block
     }
 
     @Override
     public void render(Graphics graphics) {
         if (direction == "right") {
-            graphics.drawImage(Images.heroRight, (int) x, (int) y, null);
+            graphics.drawImage(Images.heroRight, (int) xPosition, (int) yPosition, null);
         } else if (direction == "up") {
-            graphics.drawImage(Images.heroUp, (int) x, (int) y, null);
+            graphics.drawImage(Images.heroUp, (int) xPosition, (int) yPosition, null);
         } else if (direction == "left") {
-            graphics.drawImage(Images.heroLeft, (int) x, (int) y, null);
-        } else graphics.drawImage(Images.heroDown, (int) x, (int) y, null);
+            graphics.drawImage(Images.heroLeft, (int) xPosition, (int) yPosition, null);
+        } else graphics.drawImage(Images.heroDown, (int) xPosition, (int) yPosition, null);
     }
 
-    @Override
     public void move() {
         super.move();
     }
@@ -41,16 +40,16 @@ public class Hero extends Characters implements java.awt.event.KeyListener {
     public void keyReleased(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             direction = "down";
-            y += 72;
+            yPosition += TILE_SIZE;
         } else if (e.getKeyCode() == KeyEvent.VK_UP) {
             direction = "up";
-            y -= 72;
+            yPosition -= TILE_SIZE;
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             direction = "left";
-            x -= 72;
+            xPosition -= TILE_SIZE;
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             direction = "right";
-            x += 72;
+            xPosition += TILE_SIZE;
         }
         // és újra rajzolódik az új koordinátákkal
         //repaint();

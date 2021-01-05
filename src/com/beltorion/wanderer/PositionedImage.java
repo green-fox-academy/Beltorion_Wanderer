@@ -41,17 +41,4 @@ public class PositionedImage {
         }
     }
 
-    public void paintMap(Graphics g) {
-        int x = 0;
-        int y = 0;
-        for (int k = 0; k < 10; k++) {
-            for (int i = 0; i < 10; i++) {
-                g.drawImage(image, x, y, null);
-                x += 72;
-            }
-            x = 0;
-            y += 72;
-        }
-    }
-
 }

@@ -2,8 +2,8 @@ package com.beltorion.wanderer.repositories;
 
 public enum TileType {
 
-    floor("floor", false),
-    wall("wall", true);
+    FLOOR("floor", false),
+    WALL("wall", true);
 
     String textureName;
     boolean wallType;
@@ -13,3 +13,4 @@ public enum TileType {
         this.wallType = wallType;
     }
 }
+

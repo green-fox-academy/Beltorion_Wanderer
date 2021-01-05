@@ -9,17 +9,19 @@ public abstract class Characters {
     public static final int DEFAULT_SP = 10;
     public static final int DEFAULT_SPEED = 72;
 
-    protected float x, y;
+    protected int xPosition, yPosition;
     protected int hp;
     protected int dp;
     protected int sp;
-    protected float speed;
-    protected float xMove, yMove;
+    protected int speed;
+    protected int xMove, yMove;
+    protected int xCoordinate, yCoordinate;
+    static protected int[][] currentPosition = new int[1][1];
 
 
-    public Characters(float x, float y) {
-        this.x = x;
-        this.y = y;
+    public Characters(int xPosition, int yPosition) {
+        this.xPosition = xPosition;
+        this.yPosition = yPosition;
         hp = DEFAULT_HP;
         dp = DEFAULT_DP;
         sp = DEFAULT_SP;
@@ -33,26 +35,30 @@ public abstract class Characters {
     public abstract void render(Graphics graphics);
 
     public void move() {
-        x += xMove;
-        y += yMove;
+        xPosition += xMove;
+        yPosition += yMove;
+    }
+
+    public int getCurrentPosition() {
+        return currentPosition[xCoordinate][yCoordinate];
     }
 
     //GETTERS & SETTERS
 
-    public float getX() {
-        return x;
+    public int getxPosition() {
+        return xPosition;
     }
 
-    public void setX(float x) {
-        this.x = x;
+    public void setxPosition(int xPosition) {
+        this.xPosition = xPosition;
     }
 
-    public float getY() {
-        return y;
+    public int getyPosition() {
+        return yPosition;
     }
 
-    public void setY(float y) {
-        this.y = y;
+    public void setyPosition(int yPosition) {
+        this.yPosition = yPosition;
     }
 
     public int getHp() {
@@ -79,27 +85,27 @@ public abstract class Characters {
         this.sp = sp;
     }
 
-    public float getSpeed() {
+    public int getSpeed() {
         return speed;
     }
 
-    public void setSpeed(float speed) {
+    public void setSpeed(int speed) {
         this.speed = speed;
     }
 
-    public float getxMove() {
+    public int getxMove() {
         return xMove;
     }
 
-    public void setxMove(float xMove) {
+    public void setxMove(int xMove) {
         this.xMove = xMove;
     }
 
-    public float getyMove() {
+    public int getyMove() {
         return yMove;
     }
 
-    public void setyMove(float yMove) {
+    public void setyMove(int yMove) {
         this.yMove = yMove;
     }
 }
